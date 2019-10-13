@@ -491,6 +491,25 @@
 							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
 						</article> -->
 					</div>
+					<script>
+				        document.addEventListener("DOMContentLoaded", function() {
+				            const imageObserver = new IntersectionObserver((entries, imgObserver) => {
+				                entries.forEach((entry) => {
+				                    if (entry.isIntersecting) {
+				                        const lazyImage = entry.target
+				                        console.log("lazy loading ", lazyImage)
+				                        lazyImage.src = lazyImage.dataset.src
+				                        lazyImage.classList.remove("lzy_img");
+				                        imgObserver.unobserve(lazyImage);
+				                    }
+				                })
+				            });
+				            const arr = document.querySelectorAll('img.lzy_img')
+				            arr.forEach((v) => {
+				                imageObserver.observe(v);
+				            })
+				        })
+			   		 </script>
 
 				<!-- Footer -->
 					<footer id="footer" class="panel">
@@ -543,25 +562,7 @@
 			</div>
 
 		<!-- Scripts -->
-			<script>
-		        document.addEventListener("DOMContentLoaded", function() {
-		            const imageObserver = new IntersectionObserver((entries, imgObserver) => {
-		                entries.forEach((entry) => {
-		                    if (entry.isIntersecting) {
-		                        const lazyImage = entry.target
-		                        console.log("lazy loading ", lazyImage)
-		                        lazyImage.src = lazyImage.dataset.src
-		                        lazyImage.classList.remove("lzy_img");
-		                        imgObserver.unobserve(lazyImage);
-		                    }
-		                })
-		            });
-		            const arr = document.querySelectorAll('img.lzy_img')
-		            arr.forEach((v) => {
-		                imageObserver.observe(v);
-		            })
-		        })
-	   		 </script>
+
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.poptrox.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
