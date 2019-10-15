@@ -212,27 +212,35 @@
 		// Thumbs.
 			$main.children('.thumb').each(function() {
 
-				var	$this = $(this),
-					$image = $this.find('.image'), $image_img = $image.children('img'),
+
+		        var	$this = $(this),
+					$image = $this.find('.image'), $image_img = $image.children('img'),$thumb_img = $image.children('img')
 					x;
 
-				// No image? Bail.
 					if ($image.length == 0)
 						return;
 
-				// Image.
-				// This sets the background of the "image" <span> to the image pointed to by its child
-				// <img> (which is then hidden). Gives us way more flexibility.
-
-					// Set background.
-						$image.css('background-image', 'url(' + $image_img.attr('data-src') + ')');
+					$image.css('background-image', 'url(' + $thumb_img.attr('src') + ')');
 
 					// Set background position.
 						if (x = $image_img.data('position'))
 							$image.css('background-position', x);
 
 					// Hide original img.
-						$image_img.hide();
+						$thumb_img.hide();
+
+		        $('<img>').attr('data-src',$image_img.attr('data-src')).on('load', function(){
+		            if($(this).attr('src') == $(this).attr('data-src')) {
+				        $(this).css({'height': 'auto', 'width': '100%'});
+				    }
+		            $image.css('background-image', 'url(' + $image_img.attr('data-src') + ')');
+		            $image.css('background-size', 'cover');
+		            $image.css('background-position', 'center');
+					$image_img.hide();
+						
+		        });
+		        
+		        
 
 			});
 
