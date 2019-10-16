@@ -2027,3 +2027,14 @@ input, select, textarea {
 		#footer .copyright a {
 			color: inherit;
 		}
+
+
+.lazy{
+
+display: block;
+width: 480px;
+  height: 293.33px;
+  position: absolute;  left: 0;  top: 0;
+  object-fit: cover;
+  border=0;
+}
