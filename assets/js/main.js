@@ -207,8 +207,8 @@
 			});
 
 
-		// // Main.
-		// var $main = $('#main');
+		// Main.
+		var $main = $('#main');
 
 		// // Thumbs.
 		// 	$main.children('.thumb').each(function() {
